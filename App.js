@@ -17,10 +17,10 @@ function onKeyDown(e) {
       active_camera = camera_top
       break
       case 50: //2
-      active_camera = camera_side
+      active_camera = camera_persp
       break
       case 51: //3
-      active_camera = camera_front
+      active_camera = camera_moving
       break
       case 52: //4
       wireframe = true;
@@ -53,9 +53,9 @@ function init() {
     console.log(cannonShooter_1)
 
 
-/*    window.addEventListener("keydown", onKeyDown)
+    window.addEventListener("keydown", onKeyDown)
     window.addEventListener("keyup", onKeyUp)
-*/  window.addEventListener("resize", onResize)
+    //window.addEventListener("resize", onResize)
     animate()
  
 }

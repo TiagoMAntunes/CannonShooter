@@ -3,27 +3,25 @@ class CannonShooterBase extends SceneObject {
         super()
 
         let baseMAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x6e7574})
-        let wheelMAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000})
-        let radius = 2
-        let widthSegments = 20
-        let heightSegments = 20
-        let phiStart = 0
-        let phiLength = 2 * Math.PI
+        let boxThickness = 1
+        let boxWidth = 30
+        let boxDepth = 50
+        let boxHeight = 5
 
         // add robot's base platform
-        let base = super.createSceneObjBox(0, 0, 0, 20, 20, 2, baseMAT.clone())
-        this.add(base)
+        let bottom = super.createSceneObjBox(0, 0, 0, boxWidth, boxThickness, boxDepth, baseMAT.clone())
+        this.add(bottom)
 
         // add robot's wheels
-        let wheel1 = super.createSceneObjSphere(-6.5, -6.5, -3, radius, widthSegments, heightSegments, phiStart, phiLength, wheelMAT.clone())
-        let wheel2 = super.createSceneObjSphere(-6.5, 6.5, -3, radius, widthSegments, heightSegments, phiStart, phiLength, wheelMAT.clone())
-        let wheel3 = super.createSceneObjSphere(6.5, -6.5, -3, radius, widthSegments, heightSegments, phiStart, phiLength, wheelMAT.clone())
-        let wheel4 = super.createSceneObjSphere(6.5, 6.5, -3, radius, widthSegments, heightSegments, phiStart, phiLength, wheelMAT.clone())
+        let wall1 = super.createSceneObjBox(0, 3, -24.5, boxWidth - 2, boxHeight, boxThickness, baseMAT.clone())
+        let wall2 = super.createSceneObjBox(0, 3, 24.5, boxWidth - 2, boxHeight, boxThickness, baseMAT.clone())
+        let wall3 = super.createSceneObjBox(-14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
+        let wall4 = super.createSceneObjBox(14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
 
-        base.add(wheel1)
-        base.add(wheel2)
-        base.add(wheel3)
-        base.add(wheel4)
+        bottom.add(wall1)
+        bottom.add(wall2)
+        bottom.add(wall3)
+        bottom.add(wall4)
         // position Robot's  Base
         this.position.set(x, y, z)
     }

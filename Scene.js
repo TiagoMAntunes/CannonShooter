@@ -1,4 +1,4 @@
-var camera_top, camera_side, camera_front //cameras
+var camera_top, camera_persp, camera_moving //cameras
 var scene, active_camera
 var cannonShooter_1, cannonShooter_2, cannonShooter_3
 
@@ -8,7 +8,7 @@ function render() {
 
 function createCannonShooter(x, y, z) {
     'use strict'
-    let cannonShooter = new CannonShooter(x, y, z)
+    let cannonShooter = new CannonShooterBase(x, y, z)
     scene.add(cannonShooter)
 
     return cannonShooter
@@ -48,11 +48,11 @@ function update() {
 function createCameras() {
     'use strict'
 
-    camera_side = new Camera(10, -30, 15, new THREE.Vector3(10, 0, 15))
-    camera_top = new Camera(15, 15, 50, new THREE.Vector3(14, 15, 0))
-    camera_front = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
+    camera_top = new Camera(0, 10, 0, new THREE.Vector3(0, 0, 0))
+    camera_persp = new PerspCamera(0, 40, 45, new THREE.Vector3(0, 0, 0))
+    camera_moving = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
 
-    camera_front.rotateZ(270 * Math.PI / 180)
+    camera_persp.rotateZ(180 * Math.PI / 180)
 
-    active_camera = camera_side
+    active_camera = camera_top
 }
