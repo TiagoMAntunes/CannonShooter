@@ -14,14 +14,12 @@ class CannonShooterBase extends SceneObject {
 
         // add robot's wheels
         let wall1 = super.createSceneObjBox(0, 3, -24.5, boxWidth - 2, boxHeight, boxThickness, baseMAT.clone())
-        let wall2 = super.createSceneObjBox(0, 3, 24.5, boxWidth - 2, boxHeight, boxThickness, baseMAT.clone())
-        let wall3 = super.createSceneObjBox(-14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
-        let wall4 = super.createSceneObjBox(14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
+        let wall2 = super.createSceneObjBox(-14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
+        let wall3 = super.createSceneObjBox(14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
 
         bottom.add(wall1)
         bottom.add(wall2)
         bottom.add(wall3)
-        bottom.add(wall4)
         // position Robot's  Base
         this.position.set(x, y, z)
     }
