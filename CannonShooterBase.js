@@ -4,8 +4,8 @@ class CannonShooterBase extends SceneObject {
 
         let baseMAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x6e7574})
         let boxThickness = 1
-        let boxWidth = 30
-        let boxDepth = 50
+        let boxWidth = 50
+        let boxDepth = 30
         let boxHeight = 5
 
         // add robot's base platform
@@ -13,9 +13,9 @@ class CannonShooterBase extends SceneObject {
         this.add(bottom)
 
         // add robot's wheels
-        let wall1 = super.createSceneObjBox(0, 3, -24.5, boxWidth - 2, boxHeight, boxThickness, baseMAT.clone())
-        let wall2 = super.createSceneObjBox(-14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
-        let wall3 = super.createSceneObjBox(14.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
+        let wall1 = super.createSceneObjBox(0.5, 3, -14.5, boxWidth - 1, boxHeight, boxThickness, baseMAT.clone())
+        let wall2 = super.createSceneObjBox(0.5, 3, 14.5, boxWidth - 1, boxHeight, boxThickness, baseMAT.clone())
+        let wall3 = super.createSceneObjBox(-24.5, 3, 0, boxThickness, boxHeight, boxDepth, baseMAT.clone())
 
         bottom.add(wall1)
         bottom.add(wall2)
