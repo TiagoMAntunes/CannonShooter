@@ -2,6 +2,8 @@ var camera_top, camera_persp, camera_moving //cameras
 var scene, active_camera, active_shooter
 var cannonShooter_1, cannonShooter_2, cannonShooter_3
 
+var active_balls = []
+
 function render() {
     renderer.render(scene, active_camera);
 }

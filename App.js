@@ -1,5 +1,5 @@
 var renderer, wireframe
-
+var cannon_shoot = false
 var keysMap = {81: false, 113: false, 87: false, 119: false, 69: false, 101: false, 37: false, 39: false}
 
 
@@ -31,6 +31,9 @@ function onKeyDown(e) {
       break
       case 69 || 101:  //E ou e
       active_shooter = cannonShooter_3
+      break
+      case 32:
+      cannon_shoot = true
       break
   }
 

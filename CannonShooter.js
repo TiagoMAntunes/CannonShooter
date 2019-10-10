@@ -38,7 +38,15 @@ class CannonShooter extends SceneObject {
 
 	    if(keysMap[39]){//right arrow key
 	        this.rotation.z -= 0.015 * delta_time * ROT_SPEED;
-	    }
+		}
+		
+		if (cannon_shoot) {
+			cannon_shoot = false
+			
+			let ball = new CannonBall(this.position, this.rotation)
+			scene.add(ball)
+			active_balls.push(ball)
+		}
 	}
 
 	activate() {
