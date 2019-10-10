@@ -16,6 +16,12 @@ function createCannonShooter(x, y, z) {
     return cannonShooter
 }
 
+function createArena(x, y, z){
+    'use strict'
+    let arena = new Arena(x, y, z)
+    scene.add(arena)
+}
+
 
 function createScene() {
     'use strict'
@@ -23,6 +29,8 @@ function createScene() {
     scene = new THREE.Scene()
     scene.add(new THREE.AxesHelper(5))
     scene.background = new THREE.Color(0xe4edf5)
+
+    createArena(0, 0, 0)
 
     cannonShooter_1 = createCannonShooter(50, 35, 1)
     cannonShooter_2 = createCannonShooter(50, 17.5, 1)
@@ -64,11 +72,11 @@ function createCameras() {
     'use strict'
 
     camera_top = new Camera(15, 15, 50, new THREE.Vector3(15, 15, 0 ))
-    camera_persp = new PerspCamera(0, 35, 35, new THREE.Vector3(0, 0, 0))
+    camera_persp = new PerspCamera(20, 85, 35, new THREE.Vector3(20, 0, 0))
     camera_moving = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
 
 //    camera_top.rotateZ(180 * Math.PI / 180)
-//    camera_persp.rotateZ(Math.PI)
+    camera_persp.rotateZ(Math.PI)
 
     active_camera = camera_top
 }
