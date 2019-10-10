@@ -38,6 +38,17 @@ class SceneObject extends THREE.Object3D {
         return mesh
     }
 
+    createSceneObjCylinderRotXYZ(x, y, z, radiusTop, radiusBottom, height, radialSegments, material, rotX, rotY, rotZ) {
+        let geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments)
+        let mesh = new THREE.Mesh(geometry, material)
+        
+        mesh.rotation.x = rotX
+        mesh.rotation.y = rotY
+        mesh.rotation.z = rotZ
+        mesh.position.set(x, y, z)
+        return mesh
+    }
+
     createSceneObjTorusRotXY(x, y, z, radius, tube, radialSegments, tubularSegments, material, rotX, rotY) {
         let geometry = new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments)
         let mesh = new THREE.Mesh(geometry, material)

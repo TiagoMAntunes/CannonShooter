@@ -1,5 +1,5 @@
-var camera_top, camera_persp, camera_moving //cameras
-var scene, active_camera
+var camera_top, camera_side, camera_front //cameras
+var scene, active_camera, active_shooter
 var cannonShooter_1, cannonShooter_2, cannonShooter_3
 
 function render() {
@@ -8,7 +8,7 @@ function render() {
 
 function createCannonShooter(x, y, z) {
     'use strict'
-    let cannonShooter = new CannonShooterBase(x, y, z)
+    let cannonShooter = new CannonShooter(x, y, z)
     scene.add(cannonShooter)
 
     return cannonShooter
@@ -22,9 +22,11 @@ function createScene() {
     scene.add(new THREE.AxesHelper(5))
     scene.background = new THREE.Color(0xe4edf5)
 
-    cannonShooter_1 = createCannonShooter(0, 0, 0)
- //   cannonShooter_2 = createCannonShooter(0, 30, 0)
- //   cannonShooter_3 = createCannonShooter(0, -30, 0)
+    cannonShooter_1 = createCannonShooter(50, 35, 1)
+    cannonShooter_2 = createCannonShooter(50, 17.5, 1)
+    cannonShooter_3 = createCannonShooter(50, 0, 1)
+
+    active_shooter = cannonShooter_1
 }
 
 function traverseElements(obj) {
@@ -35,24 +37,35 @@ function traverseElements(obj) {
             traverseElements(obj.children[i])
   }
 
-/*
+
 function update() {
-    XXXXX.update()
+    for (child in scene.children) {
+        let obj = scene.children[child]
+        if (obj.name == "shooter") {
+            if (obj.position == active_shooter.position) 
+                obj.activate()
+            
+            else
+                obj.deactivate()
+        }  
+    }
+
+    active_shooter.update()
 
     if (wireframe) {
         traverseElements(scene);
         wireframe = false;
     }
 }
-*/
+
 function createCameras() {
     'use strict'
 
-    camera_top = new Camera(0, 10, 0, new THREE.Vector3(0, 0, 0))
-    camera_persp = new PerspCamera(0, 35, 35, new THREE.Vector3(0, 0, 0))
-    camera_moving = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
+    camera_side = new Camera(10, -30, 15, new THREE.Vector3(10, 0, 15))
+    camera_top = new Camera(15, 15, 50, new THREE.Vector3(14, 15, 0))
+    camera_front = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
 
-    camera_persp.rotateZ(180 * Math.PI / 180)
+    camera_front.rotateZ(270 * Math.PI / 180)
 
-    active_camera = camera_top
+    active_camera = camera_side
 }

@@ -1,8 +1,6 @@
 var renderer, wireframe
 
-var keysMap = {81: false, 113: false, 87: false, 119: false, 65: false, 97: false, 83: false, 115: false,
-  37: false, 38: false, 39: false, 40: false}
-
+var keysMap = {81: false, 113: false, 87: false, 119: false, 69: false, 101: false, 37: false, 39: false}
 
 
 function onKeyUp(e) {
@@ -17,13 +15,22 @@ function onKeyDown(e) {
       active_camera = camera_top
       break
       case 50: //2
-      active_camera = camera_persp
+      active_camera = camera_side
       break
       case 51: //3
-      active_camera = camera_moving
+      active_camera = camera_front
       break
       case 52: //4
       wireframe = true;
+      break
+      case 81 || 113: //Q ou q
+      active_shooter = cannonShooter_1
+      break
+      case 87 || 119:  //W ou w
+      active_shooter = cannonShooter_2
+      break
+      case 69 || 101:  //E ou e
+      active_shooter = cannonShooter_3
       break
   }
 
@@ -37,7 +44,7 @@ function onResize() {
 }
 
 function animate() {
- //   update()
+    update()
     render()
     requestAnimationFrame(animate)
 }
@@ -50,12 +57,10 @@ function init() {
 
     createScene()
     createCameras()
-    console.log(cannonShooter_1)
-
-
+ 
     window.addEventListener("keydown", onKeyDown)
     window.addEventListener("keyup", onKeyUp)
-    //window.addEventListener("resize", onResize)
+    window.addEventListener("resize", onResize)
     animate()
  
 }
