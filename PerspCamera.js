@@ -5,8 +5,6 @@ class PerspCamera extends THREE.PerspectiveCamera{
         this.position.set(x, y, z)
 
         this.lookAt(vector)
-
-        this.up.set(0, 0, 1);
     }
 
     rotateX(n){

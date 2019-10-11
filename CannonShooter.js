@@ -9,7 +9,7 @@ class CannonShooter extends SceneObject {
 		let wheelMAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000})
 
 		// create primitives
-		let cannon = super.createSceneObjCylinderRotXYZ(0, 0, 2, 2, 2, 15, 30, cannonMAT.clone(), 0, 0, Math.PI / 2)
+		let cannon = super.createSceneObjCylinderRotXYZ(0, 0, 0, 2, 2, 15, 30, cannonMAT.clone(), 0, 0, 90 * Math.PI / 180)
 		let wheel1 = super.createSceneObjSphere(1.5, -7, -2, 1, 20, 20, 0, Math.PI * 2, wheelMAT, 0);
 		let wheel2 = super.createSceneObjSphere(-1.5, -7, -2, 1, 20, 20, 0, Math.PI * 2, wheelMAT, 0);
 		let wheel3 = super.createSceneObjSphere(1.5, 0, -2, 1, 20, 20, 0, Math.PI * 2, wheelMAT, 0);

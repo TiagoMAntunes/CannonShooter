@@ -32,9 +32,9 @@ function createScene() {
 
     createArena(0, 0, 0)
 
-    cannonShooter_1 = createCannonShooter(50, 35, 1)
-    cannonShooter_2 = createCannonShooter(50, 17.5, 1)
-    cannonShooter_3 = createCannonShooter(50, 0, 1)
+    cannonShooter_1 = createCannonShooter(60, 17.5, 0)
+    cannonShooter_2 = createCannonShooter(60, -17.5, 0)
+    cannonShooter_3 = createCannonShooter(60, 0, 0)
 
     active_shooter = cannonShooter_1
 }
@@ -71,12 +71,11 @@ function update() {
 function createCameras() {
     'use strict'
 
-    camera_top = new Camera(15, 15, 50, new THREE.Vector3(15, 15, 0 ))
-    camera_persp = new PerspCamera(20, 85, 35, new THREE.Vector3(20, 0, 0))
+    camera_top = new Camera(15, 0, 20, new THREE.Vector3(15, 0, 0 ))
+    camera_persp = new PerspCamera(10, 0, 75, new THREE.Vector3(10, 0, 0 ))
     camera_moving = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
 
-//    camera_top.rotateZ(180 * Math.PI / 180)
-    camera_persp.rotateZ(Math.PI)
+    camera_persp.rotateZ(180 * Math.PI / 180)
 
     active_camera = camera_top
 }
