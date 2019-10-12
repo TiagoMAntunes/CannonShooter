@@ -33,8 +33,8 @@ function createScene() {
     createArena(0, 0, 0)
 
     cannonShooter_1 = createCannonShooter(60, 17.5, 0)
-    cannonShooter_2 = createCannonShooter(60, -17.5, 0)
-    cannonShooter_3 = createCannonShooter(60, 0, 0)
+    cannonShooter_2 = createCannonShooter(60, 0, 0)
+    cannonShooter_3 = createCannonShooter(60, -17.5, 0)
 
     active_shooter = cannonShooter_1
 }
@@ -61,6 +61,12 @@ function update() {
     }
 
     active_shooter.update()
+
+    for (n in active_balls) {
+        if (active_balls[n].move() == 0) {
+            active_balls.splice(n, 1)
+        }
+    }
 
     if (wireframe) {
         traverseElements(scene);
