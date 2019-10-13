@@ -12,9 +12,8 @@ class CannonBall extends SceneObject {
 
         let init_velocity = Math.random() * 5 + 1
         this.speed = new THREE.Vector3(init_velocity, init_velocity, 0);
-        console.log(this.speed)
 
-        //this.add(new THREE.AxesHelper(1))
+        this.add(new THREE.AxesHelper(1))
 
         
         this.velocity = new THREE.Vector3(init_velocity, init_velocity, 0);
@@ -29,10 +28,10 @@ class CannonBall extends SceneObject {
         let gravity = 0.1
         let elasticity = 0.8
 
-        this.position.x -= this.speed.x * delta_time
-        this.position.y += this.speed.y * delta_time
-        this.position.z += this.speed.z * delta_time
-        
+        this.translateX(-this.speed.x * delta_time)
+        /*this.translateY(this.speed.y * delta_time)
+        this.translateZ(this.speed.z * delta_time)
+        */
         // if ball stopped, return
         if (Math.abs(this.velocity.x) <= 0.05 && Math.abs(this.velocity.y) <= 0.05)
             return 0;
