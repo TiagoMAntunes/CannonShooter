@@ -51,7 +51,7 @@ class CannonBall extends SceneObject {
         }
 
         if (Math.abs(this.position.y) >= 24) {
-            this.speed *= -1
+            this.speed.y *= -1
             this.position.y = (this.position.y < 0 ?  -25 : 24)
         }
 
