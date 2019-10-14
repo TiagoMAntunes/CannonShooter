@@ -5,6 +5,7 @@ class CannonBall extends SceneObject {
         let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x0})
         let radius = 2
         let ball = super.createSceneObjSphere(-5, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
+        this.name = "cannon_ball"
         this.add(ball)
 
         this.position.set(pos.x, pos.y,pos.z)
@@ -14,11 +15,12 @@ class CannonBall extends SceneObject {
         let init_velocity = Math.random() * 5 + 1
         this.speed = new THREE.Vector3(init_velocity, init_velocity, 0);
 
-        let axis = new THREE.AxesHelper(2)
-        axis.position.set(-2*radius, 0, radius)
+        let axis = new THREE.AxesHelper(4)
+        axis.position.set(-5, 0, 0)
         this.add(axis)
 
-        
+        console.log(this.children[1])
+        // velocity
         this.velocity = new THREE.Vector3(init_velocity/radius, init_velocity/radius, 0);
     }
 
@@ -60,5 +62,12 @@ class CannonBall extends SceneObject {
         }
 
         //this.add_vel.z -= gravity
+    }
+
+    update() {
+    	if (ball_axis) {		// R ou r
+    		this.children[1].visible = !this.children[1].visible
+    		ball_axis = false
+    	}
     }
 }

@@ -57,7 +57,10 @@ function update() {
             
             else
                 obj.deactivate()
-        }  
+        }
+        if (obj.name == "cannon_ball") {
+            obj.update()
+        }
     }
 
     active_shooter.update()
