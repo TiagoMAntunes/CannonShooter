@@ -13,11 +13,14 @@ class CannonBall extends SceneObject {
         console.log (this.rotation)
 
         let init_velocity = Math.random() * 5 + 1
-        this.speed = new THREE.Vector3(init_velocity, init_velocity, 0);
+        this.speed = new THREE.Vector3(init_velocity * Math.cos(v.z), -init_velocity * Math.sin(v.z), 0);
+
+        this.temp_pos = new THREE.Vector3(this.position.x, this.position.y, this.position.z);
 
         let axis = new THREE.AxesHelper(4)
         axis.position.set(-5, 0, 0)
         this.add(axis)
+
 
         console.log(this.children[1])
         // velocity
@@ -30,9 +33,17 @@ class CannonBall extends SceneObject {
         let friction = 0.97
         let gravity = 0.1
         let elasticity = 0.8
+        
+        this.temp_pos.x = this.position.x
+        this.temp_pos.y = this.position.y
 
-        this.translateX(-this.speed.x * delta_time)
-        this.rotateX(-this.velocity.y * delta_time)
+        //this.rotateX(-this.velocity.y * delta_time)
+
+        this.position.set(this.temp_pos.x, this.temp_pos.y, 0)
+        this.position.x += -this.speed.x * delta_time
+        this.position.y += this.speed.y * delta_time
+
+
         /*this.translateY(this.speed.y * delta_time)
         this.translateZ(this.speed.z * delta_time)
         */
@@ -51,14 +62,14 @@ class CannonBall extends SceneObject {
         this.velocity.z *= friction
 
         // Check if ball hit Arena's walls
-        if (this.position.x <= -34) {
+        if (this.position.x < -34) {
             this.speed.x *= -1
             this.position.x = -34
         }
 
-        if (Math.abs(this.position.y) >= 24) {
-            this.speed.y *= -1
-            this.position.y = (this.position.y < 0 ?  -25 : 24)
+        if(Math.abs(this.position.y) > 23){
+            this.speed.y = -this.speed.y
+            this.position.y = (this.position.y > 0? 23 : -23)
         }
 
         //this.add_vel.z -= gravity
