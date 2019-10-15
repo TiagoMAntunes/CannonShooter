@@ -38,14 +38,14 @@ class CannonBall extends SceneObject {
 
         //this.rotateX(-this.velocity.y * delta_time)
 
+        // if ball stopped, return
+        if (Math.abs(this.velocity.x) <= 0.05 && Math.abs(this.velocity.y) <= 0.05)
+            return ;
+
         this.position.set(this.temp_pos.x, this.temp_pos.y, this.temp_pos.z)
         this.position.x += -this.speed.x * delta_time
         this.position.y += this.speed.y * delta_time
 
-
-        // if ball stopped, return
-        if (Math.abs(this.velocity.x) <= 0.05 && Math.abs(this.velocity.y) <= 0.05)
-            return ;
 
         // TODO handle bouncing && rotation
 

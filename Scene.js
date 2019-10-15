@@ -69,7 +69,10 @@ function update() {
         active_balls[n].move() == 0
         
         for (let i = parseInt(n) + 1; i < active_balls.length; i++) {
-            if (sphereCollision(active_balls[n], active_balls[i])) console.log('Collision between ' + n + ' and ' + i)
+            if (sphereCollision(active_balls[n], active_balls[i])) {
+                console.log('Collision between ' + n + ' and ' + i)
+                manageCollision(active_balls[n], active_balls[i])
+            }
         }
     }
 
@@ -94,4 +97,15 @@ function createCameras() {
 
 function sphereCollision(A,B) {
     return A.radius + B.radius >= Math.sqrt((A.position.x - B.position.x)**2 + (A.position.y - B.position.y) ** 2)
+}
+
+function manageCollision(A,B) {
+    let speed = new THREE.Vector3()
+    speed.addVectors(A.speed, B.speed)
+    speed.divideScalar(2)
+    A.speed = speed 
+    B.speed = speed 
+
+    //we need an angle manipulation
+
 }
