@@ -5,12 +5,12 @@ class CannonBall extends SceneObject {
         let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x0})
         let radius = 2
         let ball = super.createSceneObjSphere(-5, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
+        this.radius = radius
         this.name = "cannon_ball"
         this.add(ball)
 
         this.position.set(pos.x, pos.y,pos.z)
         this.rotation.set(v.x, v.y, v.z)
-        console.log (this.rotation)
 
         let init_velocity = Math.random() * 5 + 1
         this.speed = new THREE.Vector3(init_velocity * Math.cos(v.z), -init_velocity * Math.sin(v.z), 0);
@@ -22,7 +22,6 @@ class CannonBall extends SceneObject {
         this.add(axis)
 
 
-        console.log(this.children[1])
         // velocity
         this.velocity = new THREE.Vector3(init_velocity/radius, init_velocity/radius, 0);
     }
@@ -39,17 +38,14 @@ class CannonBall extends SceneObject {
 
         //this.rotateX(-this.velocity.y * delta_time)
 
-        this.position.set(this.temp_pos.x, this.temp_pos.y, 0)
+        this.position.set(this.temp_pos.x, this.temp_pos.y, this.temp_pos.z)
         this.position.x += -this.speed.x * delta_time
         this.position.y += this.speed.y * delta_time
 
 
-        /*this.translateY(this.speed.y * delta_time)
-        this.translateZ(this.speed.z * delta_time)
-        */
         // if ball stopped, return
         if (Math.abs(this.velocity.x) <= 0.05 && Math.abs(this.velocity.y) <= 0.05)
-            return 0;
+            return ;
 
         // TODO handle bouncing && rotation
 

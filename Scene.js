@@ -32,9 +32,9 @@ function createScene() {
 
     createArena(0, 0, 0)
 
-    cannonShooter_1 = createCannonShooter(60, 17.5, 0)
-    cannonShooter_2 = createCannonShooter(60, 0, 0)
-    cannonShooter_3 = createCannonShooter(60, -17.5, 0)
+    cannonShooter_1 = createCannonShooter(60, 17.5, 10)
+    cannonShooter_2 = createCannonShooter(60, 0, 10)
+    cannonShooter_3 = createCannonShooter(60, -17.5, 10)
 
     active_shooter = cannonShooter_1
 }
@@ -64,10 +64,12 @@ function update() {
     }
 
     active_shooter.update()
-
+    
     for (n in active_balls) {
-        if (active_balls[n].move() == 0) {
-            active_balls.splice(n, 1)
+        active_balls[n].move() == 0
+        
+        for (let i = parseInt(n) + 1; i < active_balls.length; i++) {
+            if (sphereCollision(active_balls[n], active_balls[i])) console.log('Collision between ' + n + ' and ' + i)
         }
     }
 
@@ -87,4 +89,9 @@ function createCameras() {
     camera_persp.rotateZ(-130 * Math.PI / 180)
 
     active_camera = camera_top
+}
+
+
+function sphereCollision(A,B) {
+    return A.radius + B.radius >= Math.sqrt((A.position.x - B.position.x)**2 + (A.position.y - B.position.y) ** 2)
 }
