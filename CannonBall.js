@@ -32,7 +32,7 @@ class CannonBall extends SceneObject {
         let friction = 0.97
         let gravity = 0.1
         let elasticity = 0.8
-        
+
         this.temp_pos.x = this.position.x
         this.temp_pos.y = this.position.y
 

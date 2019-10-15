@@ -100,12 +100,33 @@ function sphereCollision(A,B) {
 }
 
 function manageCollision(A,B) {
-    let speed = new THREE.Vector3()
+    /*let speed = new THREE.Vector3()
     speed.addVectors(A.speed, B.speed)
     speed.divideScalar(2)
     A.speed = speed 
     B.speed = speed 
+    */
+    let v1 = A.speed.clone()
+    console.log(v1)
+    let v2 = B.speed.clone()
+    let x1 = A.position.clone()
+    let x2 = B.position.clone()
+    let s1 = v1.sub(v2).dot(x1.sub(x2))
+    s1 /= x1.x**2 + x1.y**2
+    x1.multiplyScalar(s1)
+    //contas, contas, contas
+    res1 = A.speed.clone().sub(x1.clone()) //resultado de A
 
-    //we need an angle manipulation
+    
+    v1 = A.speed.clone()
+    v2 = B.speed.clone()
+    x1 = A.position.clone()
+    x2 = B.position.clone()
+    let s2 = v2.sub(v1).dot(x2.sub(x1))
+    x1.multiplyScalar(s2)
+    res2 = B.speed.clone().sub(x2.clone())
+
+    A.speed = res1
+    B.speed = res2
 
 }
