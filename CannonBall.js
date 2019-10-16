@@ -1,5 +1,5 @@
 class CannonBall extends SceneObject {
-    constructor(pos, v) {
+    constructor(pos, v, init_velocity) {
         super()
         
         let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x0})
@@ -11,8 +11,7 @@ class CannonBall extends SceneObject {
 
         this.position.set(pos.x, pos.y,pos.z)
         this.rotation.set(v.x, v.y, v.z)
-
-        let init_velocity = Math.random() * 5 + 1
+        
         this.speedx = - init_velocity * Math.cos(this.rotation.z)
         this.speedy = - init_velocity * Math.sin(this.rotation.z)
 
@@ -26,7 +25,7 @@ class CannonBall extends SceneObject {
     move() {
         const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 40 : 1;
         let friction = 0.97
-        let gravity = 0.1
+        let gravity = 0.01
         let elasticity = 0.8
 
         // if ball stopped, return
@@ -41,7 +40,9 @@ class CannonBall extends SceneObject {
         this.position.x += this.speedx *delta_time
         this.position.y += this.speedy *delta_time
 
+
         this.validateBoundaries()
+
     }
 
     update() {

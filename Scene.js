@@ -37,6 +37,18 @@ function createScene() {
     cannonShooter_3 = createCannonShooter(60, -17.5, 10)
 
     active_shooter = cannonShooter_1
+
+    let N = Math.floor(Math.random() * 10 + 1) // 1 - 6 balls to be generated
+    console.log(N, " balls")
+    let i;
+    for (i = 0; i < N; i++) {
+        let pos = new THREE.Vector3(Math.random()*70 - 35, Math.random()* 50 - 25, 1)
+        let v = new THREE.Vector3(0, 0, 0)
+        let new_ball = new CannonBall(pos, v, 0)
+        scene.add(new_ball);
+        active_balls.push(new_ball)
+    }
+
 }
 
 function traverseElements(obj) {
