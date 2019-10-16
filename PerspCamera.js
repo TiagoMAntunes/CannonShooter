@@ -19,4 +19,7 @@ class PerspCamera extends THREE.PerspectiveCamera{
         this.rotation.z = n
     }
 
+    set_aspect(n){
+        this.aspect = n
+    }
 }

@@ -3,6 +3,7 @@ var cannon_shoot = false
 var keysMap = {81: false, 113: false, 87: false, 119: false, 69: false, 101: false, 37: false, 39: false}
 var ball_axis = false;
 var last_time = undefined, current_time = undefined
+var total_balls = 0
 
 function onKeyUp(e) {
     if (e.keyCode in keysMap) {

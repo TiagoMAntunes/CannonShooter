@@ -99,7 +99,6 @@ function createCameras() {
 
     camera_top = new Camera(15, 0, 20, new THREE.Vector3(15, 0, 0 ))
     camera_persp = new PerspCamera(90, -40, 50, new THREE.Vector3(0, 0, 0))
-    camera_moving = new Camera(-30, 14.5, 15, new THREE.Vector3(0, 14.5, 15))
 
     camera_persp.rotateZ(-130 * Math.PI / 180)
 
