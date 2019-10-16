@@ -100,33 +100,28 @@ function sphereCollision(A,B) {
 }
 
 function manageCollision(A,B) {
-    /*let speed = new THREE.Vector3()
-    speed.addVectors(A.speed, B.speed)
-    speed.divideScalar(2)
-    A.speed = speed 
-    B.speed = speed 
-    
-    let v1 = A.speed.clone()
-    console.log(v1)
-    let v2 = B.speed.clone()
-    let x1 = A.position.clone()
-    let x2 = B.position.clone()
-    let s1 = v1.sub(v2).dot(x1.sub(x2))
-    s1 /= x1.x**2 + x1.y**2
-    x1.multiplyScalar(s1)
-    //contas, contas, contas
-    res1 = A.speed.clone().sub(x1.clone()) //resultado de A
+    let dx = A.position.x - B.position.x
+    let dy = A.position.y - B.position.y
+    let collision_angle = Math.atan2(dy, dx)
+    let magnitude_1 = Math.sqrt(A.speedx ** 2 + A.speedy ** 2)
+    let magnitude_2 = Math.sqrt(B.speedx ** 2 + B.speedy ** 2)
+    let direction_1 = Math.atan2(A.speedy, A.speedx)
+    let direction_2 = Math.atan2(B.speedy, B.speedx)
 
-    
-    v1 = A.speed.clone()
-    v2 = B.speed.clone()
-    x1 = A.position.clone()
-    x2 = B.position.clone()
-    let s2 = v2.sub(v1).dot(x2.sub(x1))
-    x1.multiplyScalar(s2)
-    res2 = B.speed.clone().sub(x2.clone())
+    let new_x_speed_1 = magnitude_1 * Math.cos(direction_1 - collision_angle)
+    let new_y_speed_1 = magnitude_1 * Math.sin(direction_1 - collision_angle)
+    let new_x_speed_2 = magnitude_2 * Math.cos(direction_2 - collision_angle)
+    let new_y_speed_2 = magnitude_2 * Math.sin(direction_2 * collision_angle)
 
-    A.speed = res1
-    B.speed = res2
-    */
+    let final_x_speed_1 = new_x_speed_2 //masses are equal so it simplifies
+    let final_x_speed_2 = new_x_speed_1
+    let final_y_speed_1 = new_y_speed_1
+    let final_y_speed_2 = new_y_speed_2
+
+    A.speedx = Math.cos(collision_angle) * final_x_speed_1 + Math.cos(collision_angle + Math.PI / 2)*final_y_speed_1
+    A.speedy = Math.sin(collision_angle) * final_x_speed_1 + Math.sin(collision_angle + Math.PI / 2) * final_y_speed_1
+
+    B.speedx = Math.cos(collision_angle) * final_x_speed_2 + Math.cos(collision_angle + Math.PI / 2)*final_y_speed_2
+    B.speedy = Math.sin(collision_angle) * final_x_speed_2 + Math.sin(collision_angle + Math.PI / 2) * final_y_speed_2
+
 }
