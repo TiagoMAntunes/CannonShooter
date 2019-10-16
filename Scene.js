@@ -105,7 +105,7 @@ function manageCollision(A,B) {
     speed.divideScalar(2)
     A.speed = speed 
     B.speed = speed 
-    */
+    
     let v1 = A.speed.clone()
     console.log(v1)
     let v2 = B.speed.clone()
@@ -128,5 +128,5 @@ function manageCollision(A,B) {
 
     A.speed = res1
     B.speed = res2
-
+    */
 }
