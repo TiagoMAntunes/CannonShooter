@@ -1,4 +1,3 @@
-var last_time = undefined, current_time = undefined
 const ROT_SPEED = 6
 class CannonShooter extends SceneObject {
 	constructor(x, y, z) {
@@ -29,9 +28,7 @@ class CannonShooter extends SceneObject {
 
 
     update() {
-    
 	    const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 13 : 1;
-	    
 	    if(keysMap[37]){//left arrow key
 	        this.rotation.z += 0.005 * delta_time * ROT_SPEED;
 	    }

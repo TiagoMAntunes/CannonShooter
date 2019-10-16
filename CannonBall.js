@@ -28,7 +28,7 @@ class CannonBall extends SceneObject {
 
     // so far only moves horizontally
     move() {
-        const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 13 : 1;
+        const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 40 : 1;
         let friction = 0.97
         let gravity = 0.1
         let elasticity = 0.8
