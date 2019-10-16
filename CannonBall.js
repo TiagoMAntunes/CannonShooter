@@ -4,7 +4,7 @@ class CannonBall extends SceneObject {
         
         let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x0})
         let radius = 2
-        let ball = super.createSceneObjSphere(-5, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
+        let ball = super.createSceneObjSphere(0, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
         this.radius = radius
         this.name = "cannon_ball"
         this.add(ball)
@@ -18,7 +18,7 @@ class CannonBall extends SceneObject {
 
 
         let axis = new THREE.AxesHelper(4)
-        axis.position.set(-5, 0, 0)
+        axis.position.set(0, 0, 0)
         this.add(axis)
     }
 
@@ -40,6 +40,8 @@ class CannonBall extends SceneObject {
         // Move the ball
         this.position.x += this.speedx *delta_time
         this.position.y += this.speedy *delta_time
+
+        this.validateBoundaries()
     }
 
     update() {
@@ -47,5 +49,24 @@ class CannonBall extends SceneObject {
     		this.children[1].visible = !this.children[1].visible
     		ball_axis = false
     	}
+    }
+
+    validateBoundaries() {
+        //left wall
+        if (this.position.x - this.radius <= -38.5) {
+            this.position.x = -38.5 + this.radius
+            this.speedx *= -1
+        }
+
+        //lower wall
+        if (this.position.y - this.radius <= -28.5) {
+            this.position.y = -28.5 + this.radius
+            this.speedy *= -1
+        }
+
+        if (this.position.y + this.radius >= 28.5) {
+            this.position.y = 28.5 - this.radius
+            this.speedy *= -1
+        }
     }
 }
