@@ -25,7 +25,7 @@ class CannonBall extends SceneObject {
         this.add(axis)
 
         this.children[1].visible = true
-        if (ball_axis) {
+        if (!ball_axis) {
             this.children[1].visible = false
         } 
     }

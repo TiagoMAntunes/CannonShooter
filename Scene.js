@@ -90,15 +90,13 @@ function update() {
             else
                 obj.deactivate()
         }
-        if (obj.name == "cannon_ball" && ball_axis) {
-            obj.update()
-        }
     }
         
 
     active_shooter.update()
     
     for (n in active_balls) {
+        active_balls[n].update()
         active_balls[n].move() == 0
         
         for (let i = parseInt(n) + 1; i < active_balls.length; i++) {
@@ -107,7 +105,7 @@ function update() {
                 manageCollision(active_balls[n], active_balls[i])
             }
         }
-        // if ball out of arena -> make it invisible
+        // if ball out of arena -> make it invisiblex-c-<        
         if (active_balls[n].position.x > 42) {
             active_balls[n].visible = false
             active_balls.splice(n, 1)
