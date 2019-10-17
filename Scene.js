@@ -107,6 +107,12 @@ function update() {
                 manageCollision(active_balls[n], active_balls[i])
             }
         }
+        // if ball out of arena -> make it invisible
+        if (active_balls[n].position.x > 42) {
+            active_balls[n].visible = false
+            active_balls.splice(n, 1)
+        }
+
     }
 
     if (wireframe) {

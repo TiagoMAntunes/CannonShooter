@@ -31,10 +31,16 @@ class CannonShooter extends SceneObject {
 	    const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 13 : 1;
 	    if(keysMap[37]){//left arrow key
 	        this.rotation.z += 0.005 * delta_time * ROT_SPEED;
+	        console.log(this.rotation.z)
+	        if (this.rotation.z >= 70 * Math.PI/180)
+	        	this.rotation.z = 70 * Math.PI/180
 	    }
 
 	    if(keysMap[39]){//right arrow key
+	    	console.log(this.rotation.z)	    	
 	        this.rotation.z -= 0.005 * delta_time * ROT_SPEED;
+	        if (this.rotation.z <= -70 * Math.PI/180)
+	        	this.rotation.z = -70 * Math.PI/180
 		}
 		
 		if (cannon_shoot) {
