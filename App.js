@@ -4,6 +4,8 @@ var keysMap = {81: false, 113: false, 87: false, 119: false, 69: false, 101: fal
 var ball_axis = false;
 var last_time = undefined, current_time = undefined
 var total_balls = 0
+var first_cannon = true
+var following_ball = false
 
 function onKeyUp(e) {
     if (e.keyCode in keysMap) {
@@ -15,12 +17,15 @@ function onKeyDown(e) {
   switch(e.keyCode) {
       case 49: //1
       active_camera = camera_top
+      following_ball = false
       break
       case 50: //2
       active_camera = camera_persp
+      following_ball = false
       break
       case 51: //3
       active_camera = camera_moving
+      following_ball = true
       break
       case 52: //4
       wireframe = true;

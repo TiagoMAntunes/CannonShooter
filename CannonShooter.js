@@ -23,6 +23,13 @@ class CannonShooter extends SceneObject {
 
 		this.position.set(x, y, z)
 
+		if(first_cannon){
+			cannon_cam = new PerspCamera(25, 0, 15, scene.position)
+			cannon_cam.rotateZ(-90 * Math.PI / 180)
+			this.add(cannon_cam)
+			camera_moving = cannon_cam
+		}
+
 		Object.defineProperty(this, "name", {value: "shooter"})
 	}
 
@@ -49,10 +56,11 @@ class CannonShooter extends SceneObject {
 			
 			let ball = new CannonBall(this.position, this.rotation, Math.random() * 5 + 1)
 
-			if(total_balls == 1){
-				camera_moving = new PerspCamera(10, 0, 10, scene.position)
-				camera_moving.rotateZ(-90 * Math.PI / 180)
-				ball.add(camera_moving)
+			camera_moving = new PerspCamera(10, 0, 10, scene.position)
+			camera_moving.rotateZ(-90 * Math.PI / 180)
+			ball.add(camera_moving)
+			if(following_ball){
+				active_camera = camera_moving
 			}
 
 			scene.add(ball)

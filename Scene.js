@@ -1,4 +1,4 @@
-var camera_top, camera_persp, camera_moving //cameras
+var camera_top, camera_persp, camera_moving, cannon_cam //cameras
 var scene, active_camera, active_shooter
 var cannonShooter_1, cannonShooter_2, cannonShooter_3
 
@@ -63,6 +63,7 @@ function createScene() {
     createArena(0, 0, 0)
 
     cannonShooter_1 = createCannonShooter(40, 17.5, 3)
+    first_cannon = false
     cannonShooter_2 = createCannonShooter(40, 0, 3)
     cannonShooter_3 = createCannonShooter(40, -17.5, 3)
 
