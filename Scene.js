@@ -21,6 +21,36 @@ function createArena(x, y, z){
     let arena = new Arena(x, y, z)
     scene.add(arena)
 }
+ 
+function createNBalls() {
+    let N = Math.floor(Math.random() * 10 + 1) // 1 - 11 balls to be generated
+    
+    for (i = 0; i < N; i++) {
+        let x = Math.random()*70 - 35
+        let y = Math.random()* 50 - 25
+        let flag = true
+
+// NOT WORKING!
+ /*       while(flag) {
+            flag = false
+            for (index in active_balls) {
+                let ball = active_balls[index]
+
+                if ((ball.position.x <= x + 2 * ball.radius || ball.position.x <= x - 2 * ball.radius) && (ball.position.y <= y + 2 * ball.radius || ball.position.y <= y - 2 * ball.radius)) {
+                    x = Math.random()*70 - 35
+                    y = Math.random()* 50 - 25
+                    flag = true
+                }
+            }
+        }
+*/
+        let pos = new THREE.Vector3(x, y, 3)
+        let v = new THREE.Vector3(0, 0, 0)
+        let new_ball = new CannonBall(pos, v, 0)
+        scene.add(new_ball);
+        active_balls.push(new_ball)
+    }
+}
 
 
 function createScene() {
@@ -32,23 +62,13 @@ function createScene() {
 
     createArena(0, 0, 0)
 
-    cannonShooter_1 = createCannonShooter(60, 17.5, 10)
-    cannonShooter_2 = createCannonShooter(60, 0, 10)
-    cannonShooter_3 = createCannonShooter(60, -17.5, 10)
+    cannonShooter_1 = createCannonShooter(40, 17.5, 3)
+    cannonShooter_2 = createCannonShooter(40, 0, 3)
+    cannonShooter_3 = createCannonShooter(40, -17.5, 3)
 
     active_shooter = cannonShooter_1
 
-    let N = Math.floor(Math.random() * 10 + 1) // 1 - 6 balls to be generated
-    console.log(N, " balls")
-    let i;
-    for (i = 0; i < N; i++) {
-        let pos = new THREE.Vector3(Math.random()*70 - 35, Math.random()* 50 - 25, 1)
-        let v = new THREE.Vector3(0, 0, 0)
-        let new_ball = new CannonBall(pos, v, 0)
-        scene.add(new_ball);
-        active_balls.push(new_ball)
-    }
-
+    createNBalls()
 }
 
 function traverseElements(obj) {
@@ -70,10 +90,11 @@ function update() {
             else
                 obj.deactivate()
         }
-        if (obj.name == "cannon_ball") {
+        if (obj.name == "cannon_ball" && ball_axis) {
             obj.update()
         }
     }
+        
 
     active_shooter.update()
     
@@ -98,7 +119,7 @@ function createCameras() {
     'use strict'
 
     camera_top = new Camera(15, 0, 20, new THREE.Vector3(15, 0, 0 ))
-    camera_persp = new PerspCamera(90, -40, 50, new THREE.Vector3(0, 0, 0))
+    camera_persp = new PerspCamera(80, -35, 45, new THREE.Vector3(0, 0, 0))
 
     camera_persp.rotateZ(-130 * Math.PI / 180)
 

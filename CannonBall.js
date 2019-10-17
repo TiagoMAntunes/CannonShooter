@@ -23,6 +23,11 @@ class CannonBall extends SceneObject {
         let axis = new THREE.AxesHelper(4)
         axis.position.set(0, 0, 0)
         this.add(axis)
+
+        this.children[1].visible = true
+        if (ball_axis) {
+            this.children[1].visible = false
+        } 
     }
 
     // so far only moves horizontally
@@ -50,10 +55,12 @@ class CannonBall extends SceneObject {
     }
 
     update() {
-    	if (ball_axis) {		// R ou r
-    		this.children[1].visible = !this.children[1].visible
-    		ball_axis = false
+    	if (ball_axis && !this.children[1].visible) {		// R ou r
+    		this.children[1].visible = true
     	}
+        else if (!ball_axis && this.children[1].visible) {
+            this.children[1].visible = false
+        }
     }
 
     validateBoundaries() {
