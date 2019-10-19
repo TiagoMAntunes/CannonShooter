@@ -110,6 +110,13 @@ function update() {
         if (active_balls[n].position.x > 42) {
             active_balls[n].visible = false
             active_balls.splice(n, 1)
+            console.log(n)
+            console.log(camera_ball)
+            if(n == camera_ball){
+                camera_moving = cannon_cam
+                if(following_ball)
+                    active_camera = camera_moving
+            }
         }
 
     }

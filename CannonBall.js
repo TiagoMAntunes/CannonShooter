@@ -32,9 +32,10 @@ class CannonBall extends SceneObject {
             this.ball.axis.visible = false
         } 
 
-        camera_moving = new PerspCamera(10, 0, 10, scene.position)
-		camera_moving.rotateZ(-90 * Math.PI / 180)
-		this.add(camera_moving)
+        let ball_cam = new PerspCamera(10, 0, 10, scene.position)
+        ball_cam.rotateZ(-90 * Math.PI / 180)
+        this.add(ball_cam)
+        camera_moving = ball_cam
 		if(following_ball){
 			active_camera = camera_moving
 		}

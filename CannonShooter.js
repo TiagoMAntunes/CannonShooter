@@ -52,19 +52,11 @@ class CannonShooter extends SceneObject {
 		
 		if (cannon_shoot) {
 			cannon_shoot = false
-			total_balls++
 			
 			let ball = new CannonBall(this.position, this.rotation, Math.random() * 5 + 1)
 
-			camera_moving = new PerspCamera(10, 0, 10, scene.position)
-			camera_moving.rotateZ(-90 * Math.PI / 180)
-			ball.add(camera_moving)
-			if(following_ball){
-				active_camera = camera_moving
-			}
-
 			scene.add(ball)
-			active_balls.push(ball)
+			camera_ball = active_balls.push(ball) -1
 		}
 	}
 
