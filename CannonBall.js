@@ -16,6 +16,11 @@ class CannonBall extends SceneObject {
         this.speedx = - init_velocity * Math.cos(this.rotation.z)
         this.speedy = - init_velocity * Math.sin(this.rotation.z)
 
+        this.velocity = new THREE.Vector3()
+        this.rotationAxis = new THREE.Vector3()
+        this.velocity.set(this.speedx, this.speedy, 0)
+        this.rotationAxis.set(0, 0, 1).cross(this.velocity).normalize()
+
 
         let axis = new THREE.AxesHelper(4)
         axis.position.set(0, 0, 0)
@@ -45,6 +50,15 @@ class CannonBall extends SceneObject {
         // Move the ball
         this.position.x += this.speedx *delta_time
         this.position.y += this.speedy *delta_time
+
+        // Rotate the ball
+        this.velocity.set(this.speedx, this.speedy, 0)
+        this.rotationAxis.set(0, 0, 1).cross(this.velocity).normalize()
+
+        var velocity_magnitude = this.velocity.length()
+        var rotation_amount = velocity_magnitude * (Math.PI * 2) / this.radius
+
+        this.rotateOnWorldAxis(this.rotationAxis, rotation_amount)
 
 
         this.validateBoundaries()
