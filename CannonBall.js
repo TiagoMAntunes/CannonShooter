@@ -5,10 +5,10 @@ class CannonBall extends SceneObject {
         let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000})
 
         let radius = 2
-        let ball = super.createSceneObjSphere(0, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
+        this.ball = super.createSceneObjSphere(0, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)
         this.radius = radius
         this.name = "cannon_ball"
-        this.add(ball)
+        this.add(this.ball)
 
         this.position.set(pos.x, pos.y,pos.z)
         this.rotation.set(v.x, v.y, v.z)
@@ -24,12 +24,20 @@ class CannonBall extends SceneObject {
 
         let axis = new THREE.AxesHelper(4)
         axis.position.set(0, 0, 0)
-        this.add(axis)
+        this.ball.axis = axis
+        this.ball.add(axis)
 
-        this.children[1].visible = true
+        this.ball.axis.visible = true
         if (!ball_axis) {
-            this.children[1].visible = false
+            this.ball.axis.visible = false
         } 
+
+        camera_moving = new PerspCamera(10, 0, 10, scene.position)
+		camera_moving.rotateZ(-90 * Math.PI / 180)
+		this.add(camera_moving)
+		if(following_ball){
+			active_camera = camera_moving
+		}
     }
 
     // so far only moves horizontally
@@ -58,19 +66,18 @@ class CannonBall extends SceneObject {
         var velocity_magnitude = this.velocity.length()
         var rotation_amount = velocity_magnitude * (Math.PI * 2) / this.radius
 
-        this.rotateOnWorldAxis(this.rotationAxis, rotation_amount)
-
+        this.ball.rotateOnWorldAxis(this.rotationAxis, rotation_amount)
 
         this.validateBoundaries()
 
     }
 
     update() {
-    	if (ball_axis && !this.children[1].visible) {		// R ou r
-    		this.children[1].visible = true
+    	if (ball_axis && !this.ball.axis.visible) {		// R ou r
+    		this.ball.axis.visible = true
     	}
-        else if (!ball_axis && this.children[1].visible) {
-            this.children[1].visible = false
+        else if (!ball_axis && this.ball.axis.visible) {
+            this.ball.axis.visible = false
         }
     }
 
