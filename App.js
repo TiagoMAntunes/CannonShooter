@@ -1,4 +1,4 @@
-var renderer, wireframe = false
+var renderer, wireframe = true
 var cannon_shoot = false
 var keysMap = {81: false, 113: false, 87: false, 119: false, 69: false, 101: false, 37: false, 39: false}
 var ball_axis = false;
@@ -28,7 +28,7 @@ function onKeyDown(e) {
       following_ball = true
       break
       case 52: //4
-      wireframe = true;
+      wireframe = !wireframe;
       break
       case 81 || 113:  //Q ou q
       active_shooter = cannonShooter_1

@@ -2,7 +2,7 @@ class CannonBall extends SceneObject {
     constructor(pos, v, init_velocity) {
         super()
         
-        let MAT = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000})
+        let MAT = new THREE.MeshBasicMaterial({wireframe: wireframe, color: 0x000000})
 
         let radius = 2
         this.ball = super.createSceneObjSphere(0, 0, 0, radius, 20, 20, 0, Math.PI * 2, MAT)

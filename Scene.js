@@ -74,7 +74,7 @@ function createScene() {
 
 function traverseElements(obj) {
     if (obj instanceof THREE.Mesh)
-        obj.material.wireframe = !obj.material.wireframe
+        obj.material.wireframe = wireframe
     if (obj !== undefined)
         for (i in obj.children)
             traverseElements(obj.children[i])
@@ -120,11 +120,7 @@ function update() {
         }
 
     }
-
-    if (wireframe) {
-        traverseElements(scene);
-        wireframe = false;
-    }
+    traverseElements(scene);
 }
 
 function createCameras() {
