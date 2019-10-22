@@ -136,7 +136,8 @@ function createCameras() {
 
 
 function sphereCollision(A,B) {
-    return A.radius + B.radius >= Math.sqrt((A.position.x - B.position.x)**2 + (A.position.y - B.position.y) ** 2)
+    const delta_time = last_time != undefined && current_time != undefined ? (current_time - last_time) / 40 : 1;
+    return A.radius + B.radius >= Math.sqrt((A.position.x - A.speedx * delta_time - B.position.x - B.speedx * delta_time)**2 + (A.position.y + A.speedy * delta_time - B.position.y - B.speedy * delta_time) ** 2)
 }
 
 function manageCollision(A,B) {
