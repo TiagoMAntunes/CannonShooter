@@ -24,26 +24,24 @@ function createArena(x, y, z){
  
 function createNBalls() {
     let N = Math.floor(Math.random() * 10 + 1) // 1 - 11 balls to be generated
-    
     for (i = 0; i < N; i++) {
         let x = Math.random()*70 - 35
         let y = Math.random()* 50 - 25
         let flag = true
 
-// NOT WORKING!
- /*       while(flag) {
+        while(flag) {
             flag = false
             for (index in active_balls) {
                 let ball = active_balls[index]
 
-                if ((ball.position.x <= x + 2 * ball.radius || ball.position.x <= x - 2 * ball.radius) && (ball.position.y <= y + 2 * ball.radius || ball.position.y <= y - 2 * ball.radius)) {
+                if ((ball.position.x <= x + 2 * ball.radius && ball.position.x >= x - 2 * ball.radius) && (ball.position.y <= y + 2 * ball.radius && ball.position.y >= y - 2 * ball.radius)) {
                     x = Math.random()*70 - 35
                     y = Math.random()* 50 - 25
                     flag = true
                 }
             }
         }
-*/
+
         let pos = new THREE.Vector3(x, y, 3)
         let v = new THREE.Vector3(0, 0, 0)
         let new_ball = new CannonBall(pos, v, 0)
